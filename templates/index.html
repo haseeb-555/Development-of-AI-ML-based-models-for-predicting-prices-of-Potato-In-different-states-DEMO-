@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Prediction</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Form Container */
+        form {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            transition: transform 0.3s ease;
+        }
+
+        form:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Title */
+        h1 {
+            font-size: 2.2rem;
+            color: #444;
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        /* Labels and Inputs */
+        label {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            display: block;
+            color: #666;
+            font-weight: 600;
+        }
+
+        select, input[type="date"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border 0.3s ease;
+            background-color: #f8f9fa;
+        }
+
+        select:focus, input[type="date"]:focus {
+            border-color: #28a745;
+            outline: none;
+        }
+
+        /* Submit Button */
+        button {
+            width: 100%;
+            padding: 12px 15px;
+            background: linear-gradient(135deg, #28a745, #218838);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #218838, #1e7e34);
+        }
+
+        /* Extra Styles for Hover Effects */
+        select:hover, input[type="date"]:hover {
+            background-color: #fff;
+            border-color: #adb5bd;
+        }
+    </style>
+</head>
+<body>
+    <form action="{{ url_for('predict') }}" method="POST">
+        <h1>Potato Price Prediction</h1>
+        
+        <label for="state">State:</label>
+        <select name="state" id="state">
+            <option value="uttarpradesh">Uttar Pradesh</option>
+            <!-- Add more options as needed -->
+        </select>
+        
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" name="start_date" required>
+        
+        <label for="end_date">End Date:</label>
+        <input type="date" id="end_date" name="end_date" required>
+        
+        <button type="submit">Predict Prices</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Prediction Results</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url('https://source.unsplash.com/featured/?market') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Main Container */
+        .container {
+            background: rgba(0, 0, 0, 0.75);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        /* Title Styling */
+        h1 {
+            font-size: 2.5rem;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        th, td {
+            padding: 12px 20px;
+            border: 1px solid #28a745;
+            text-align: center;
+            color: #fff;
+        }
+
+        th {
+            background: #28a745;
+            font-size: 1.2rem;
+        }
+
+        td {
+            background: rgba(0, 0, 0, 0.7);
+            font-size: 1rem;
+        }
+
+        tr:hover td {
+            background: rgba(40, 167, 69, 0.5);
+        }
+
+        /* Button Back to Home */
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            transition: background 0.3s ease;
+        }
+
+        a:hover {
+            background: #218838;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Predicted Prices</h1>
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Forecasted Price</th>
+                <th>Minimum Price</th>
+                <th>Maximum Price</th>
+            </tr>
+            {% for date, row in forecast.iterrows() %}
+            <tr>
+                <td>{{ date }}</td>
+                <td>{{ row['Forecast'] }}</td>
+                <td>{{ row['Lower CI'] }}</td>
+                <td>{{ row['Upper CI'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <a href="{{ url_for('index') }}">Back to Home</a>
+    </div>
+</body>
+</html>
